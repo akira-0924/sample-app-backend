@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OwnerController;
+use App\Http\Controllers\SampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth:admin', 'verified'])->name('dashboard');
+
+// Route::resource('admin/owners', OwnerController::class)
+// ->middleware(['auth:admin', 'verified']);
+// ->name('admin.owners');
+
+Route::controller(SampleController::class)
+    ->group(function () {
+        Route::get('/index', 'index');
+    });

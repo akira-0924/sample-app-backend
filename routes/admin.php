@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\OwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,11 @@ Route::get('/', function () {
     ]);
 });
 
+Route::resource('/owners', OwnerController::class)
+->middleware(['auth:admin', 'verified']);
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Admin/Auth/Dashboard');
 })->middleware(['auth:admin', 'verified'])->name('dashboard');
 
 Route::middleware('auth:admin')->group(function () {
