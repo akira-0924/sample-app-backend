@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/User/AuthenticatedLayout";
+import AuthenticatedLayout from "@/Layouts/Admin/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 export default function Dashboard({ auth }) {

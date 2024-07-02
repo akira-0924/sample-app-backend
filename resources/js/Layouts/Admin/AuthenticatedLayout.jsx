@@ -29,6 +29,19 @@ export default function Authenticated({ user, header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route("admin.owners.index", {
+                                        page: 1,
+                                        limit: 10,
+                                    })}
+                                    active={route().current(
+                                        "admin.owners.index"
+                                    )}
+                                >
+                                    オーナー管理
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
@@ -40,11 +53,11 @@ export default function Authenticated({ user, header, children }) {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {user.name}
+                                                {user && user.name}
 
                                                 <svg
-                                                    className="ms-2 -me-0.5 h-4 w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
+                                                    className="ms-2 -me-0.5 h-4 w-4"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
                                                 >
@@ -86,6 +99,7 @@ export default function Authenticated({ user, header, children }) {
                                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                             >
                                 <svg
+                                    xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6"
                                     stroke="currentColor"
                                     fill="none"
@@ -137,10 +151,10 @@ export default function Authenticated({ user, header, children }) {
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800">
-                                {user.name}
+                                {user && user.name}
                             </div>
                             <div className="font-medium text-sm text-gray-500">
-                                {user.email}
+                                {user && user.email}
                             </div>
                         </div>
 
